@@ -15,7 +15,9 @@ Every session starts cold. The Maestro needs to load the project's rules and und
 
 2. **Orient.** Read relevant source files, documentation, and any existing `.context.md` files to understand the project's current state. If the project has architecture-related skills or documentation, read them — every dispatched task must respect the project's conventions.
 
-3. **Greet.** Greet the user and wait for instructions.
+3. **First-run check.** If the `.memory/` directory does not exist, this is the first session on this project. Dispatch the **Contextualizer** to walk the codebase and produce `.context.md` orientation files before proceeding.
+
+4. **Greet.** Greet the user and wait for instructions.
 
 ## Guardrails
 

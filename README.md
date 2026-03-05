@@ -1,6 +1,6 @@
 # Agent Starter Kit
 
-The scaffold for your ultra-personalized, multi-model AI crew in pure natural language. Route different personas to different providers — run your Architect on Claude, your Reviewer on Qwen, or any combination. Pre-configured for Claude Code and [opencode](https://github.com/anomalyco/opencode).
+The scaffold for your ultra-personalized, multi-model AI crew in pure natural language. Route different personas to different providers — run your Architect on Claude, your Reviewer on Qwen, or any combination.
 
 ## Setup
 
@@ -8,8 +8,9 @@ The scaffold for your ultra-personalized, multi-model AI crew in pure natural la
 2. Add `.agents/` and `.memory/` to the project's `.gitignore`.
 3. Copy the `CLAUDE.md` file from this repo into the root of the project (or point your AI tool's entry file to `.agents/README.md`).
 4. Start the AI agent (e.g., `claude`, or whatever CLI you use).
-5. Ask the agent to run the **Contextualizer** first — it will walk the codebase and produce `.context.md` orientation files that all other personas rely on.
-6. From there, speak naturally. The Maestro orchestrates everything.
+5. Say **"Please comply with CLAUDE.md."** — this boots the Maestro and loads the framework.
+6. From there, speak naturally. The Maestro orchestrates everything. On first run, it automatically dispatches the Contextualizer to map the codebase.
+7. Customize — add personas, rules, skills, and providers to fit your project (see Customization below).
 
 ## Structure
 
@@ -41,12 +42,12 @@ Each persona has an identity (who they are), a playbook (what they do), a handof
 Skills codify procedures that personas reference. They answer "how to do X" so personas can focus on "what to do."
 
 - **boot** — session startup sequence
-- **dispatch** — how the Maestro assembles and sends work to personas
+- **dispatch** — how the Maestro assembles and sends work to personas.
 - **task-tracking** — file-based to-do for multi-step work
 
 ## Customization
 
-- **Dispatch** — edit `skills/dispatch.md` to match your CLI agents. The Providers table and CLI Dispatch section are pre-configured for Claude Code and opencode (Qwen). Add rows for any other provider you use.
+- **Dispatch** — edit `skills/dispatch.md` to match your CLI agents. The Providers table and CLI Dispatch section are pre-configured for Claude Code and [opencode](https://github.com/anomalyco/opencode) (Qwen). Add rows for any other provider/model you use.
 - Add new personas to `personas/` following the schema in `personas/README.md`
 - Add rules to `rules/commandments/`, `rules/edicts/`, or `rules/counsel/`
 - Add skills to `skills/` following the schema in `skills/README.md`

@@ -1,6 +1,6 @@
 # Agent Starter Kit
 
-A structural foundation for building multi-agent AI systems. Provides personas, rules, skills, and an orchestration pattern you can adapt to any project.
+The scaffold for your ultra-personalized, multi-model AI crew in pure natural language. Route different personas to different providers — run your Architect on Claude, your Reviewer on Qwen, or any combination. Pre-configured for Claude Code and [opencode](https://github.com/anomalyco/opencode).
 
 ## Setup
 
@@ -28,7 +28,7 @@ The **Maestro** is the conductor. It receives user requests, decomposes them, an
 - **Reviewer** — checks work for correctness and quality
 - **Contextualizer** — documents project structure for orientation
 
-Each persona has an identity (who they are), a playbook (what they do), a handoff format (what they deliver), and red lines (what they must not do).
+Each persona has an identity (who they are), a playbook (what they do), a handoff format (what they deliver), and red lines (what they must not do). Each persona also declares a `preferredModel` — the Maestro uses this to route work to the right provider automatically.
 
 ## Rules Hierarchy
 
@@ -46,6 +46,7 @@ Skills codify procedures that personas reference. They answer "how to do X" so p
 
 ## Customization
 
+- **Dispatch** — edit `skills/dispatch.md` to match your CLI agents. The Providers table and CLI Dispatch section are pre-configured for Claude Code and opencode (Qwen). Add rows for any other provider you use.
 - Add new personas to `personas/` following the schema in `personas/README.md`
 - Add rules to `rules/commandments/`, `rules/edicts/`, or `rules/counsel/`
 - Add skills to `skills/` following the schema in `skills/README.md`

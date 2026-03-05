@@ -1,5 +1,6 @@
 ---
 shortDescription: Software development. Backend, frontend, APIs, components, data layers.
+preferredModel: claude
 modelTier: tier-2
 version: 0.1.0
 lastUpdated: 2026-03-04

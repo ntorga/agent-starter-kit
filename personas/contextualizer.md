@@ -1,5 +1,6 @@
 ---
 shortDescription: Reads project structure and produces .context.md files.
+preferredModel: claude
 modelTier: tier-1
 version: 0.1.0
 lastUpdated: 2026-03-04

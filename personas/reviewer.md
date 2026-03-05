@@ -1,5 +1,6 @@
 ---
 shortDescription: Reviews work output for correctness, compliance, and quality.
+preferredModel: claude
 modelTier: tier-2
 version: 0.1.0
 lastUpdated: 2026-03-04

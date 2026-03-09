@@ -1,6 +1,11 @@
 # Changelog
 
 ```log
+0.2.2 - 2026/03/09
+feat(maestro): surface pre-existing issues (bugs, tech debt, code smells) found by sub-agents during Deliver
+feat(dispatch): instruct sub-agents to report pre-existing issues in a Discovered Issues handoff section
+fix(maestro): strengthen commit guardrail — add Red Line, require unambiguous "commit" authorization (not just approval)
+
 0.2.1 - 2026/03/06
 refactor: rename CLAUDE.md to AGENTS.md for model-agnostic branding
 docs(readme): merge intro and Motivation into two concise paragraphs, add provider examples and ELO requirement

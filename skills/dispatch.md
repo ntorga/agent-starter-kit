@@ -1,8 +1,8 @@
 ---
 shortDescription: Assembles sub-agent prompts with task brief and routes to the correct provider.
 usedBy: [maestro]
-version: 0.2.0
-lastUpdated: 2026-03-05
+version: 0.2.1
+lastUpdated: 2026-03-09
 ---
 
 ## Purpose
@@ -69,6 +69,7 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 <notes>
   - You are running non-interactively — there is no user on the other end to answer prompts. Never pause to wait for input. If you lack information that is critical to proceed, stop immediately and return a handoff explaining what is missing. A new run will be dispatched with the missing context.
+  - If you encounter pre-existing issues (bugs, tech debt, code smells) outside the current task's scope, list them in a separate `## Discovered Issues` section at the end of your handoff. Do not fix them — just report what you found and where.
 </notes>
 
 <task>

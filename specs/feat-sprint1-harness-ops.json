@@ -1,7 +1,7 @@
 {
   "id": "feat-sprint1-harness-ops",
   "title": "Sprint 1 — Harness Operations Layer",
-  "status": "in-progress",
+  "status": "passing",
   "priority": 1,
   "phase": 1,
   "totalPhases": 1,
@@ -13,52 +13,52 @@
     {
       "id": "ac-1",
       "description": "skills/testing.md exists with frontmatter, Purpose, Procedure (smoke check, T1/T2/T3 tiers, Playwright CLI commands), and Guardrails sections",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-2",
       "description": "rules/commandments/security.md exists with scope: all, and covers input validation, least-privilege, secret protection, output sanitization, destructive actions, and dependency verification",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-3",
       "description": "skills/error-recovery.md exists with 6 error classes, max-2-retry rule, Capability Gap Report template, and Maestro escalation flow",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-4",
       "description": "specs/README.md exists with the JSON schema, field reference, status values, risk level gate table, and rules",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-5",
       "description": "personas/coder.md updated to reference skills/testing.md and skills/error-recovery.md in its Playbook",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-6",
       "description": "personas/architect.md updated to produce a JSON spec in specs/ as part of plan output",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-7",
       "description": "personas/maestro.md updated to pass spec path in task briefs and handle Capability Gap escalations",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-8",
       "description": "personas/reviewer.md updated to cross-reference spec acceptance criteria against handoff Test Results",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-9",
       "description": "skills/task-tracking.md updated to derive to-do items from specs/*.json acceptanceCriteria and sync status back to the spec",
-      "status": "failing"
+      "status": "passing"
     },
     {
       "id": "ac-10",
       "description": "CHANGELOG.md updated with version 0.3.0 entry documenting all Sprint 1 additions",
-      "status": "failing"
+      "status": "passing"
     }
   ],
   "affectedFiles": [
@@ -74,5 +74,5 @@
     "skills/task-tracking.md",
     "CHANGELOG.md"
   ],
-  "notes": ""
+  "notes": "All 10 acceptance criteria delivered and committed to feat-sprint1-harness-ops branch. Ready for PR."
 }

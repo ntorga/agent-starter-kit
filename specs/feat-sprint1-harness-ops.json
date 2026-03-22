@@ -1,0 +1,78 @@
+{
+  "id": "feat-sprint1-harness-ops",
+  "title": "Sprint 1 — Harness Operations Layer",
+  "status": "in-progress",
+  "priority": 1,
+  "phase": 1,
+  "totalPhases": 1,
+  "created": "2026-03-22",
+  "updated": "2026-03-22",
+  "riskLevel": "low",
+  "description": "Add the operations layer to the agent-starter-kit: three-tier testing protocol, OWASP-aligned security commandment, structured error recovery, and JSON feature specifications. These four deliverables close the critical gaps identified in the harness engineering GAP analysis against Anthropic and OpenAI best practices.",
+  "acceptanceCriteria": [
+    {
+      "id": "ac-1",
+      "description": "skills/testing.md exists with frontmatter, Purpose, Procedure (smoke check, T1/T2/T3 tiers, Playwright CLI commands), and Guardrails sections",
+      "status": "failing"
+    },
+    {
+      "id": "ac-2",
+      "description": "rules/commandments/security.md exists with scope: all, and covers input validation, least-privilege, secret protection, output sanitization, destructive actions, and dependency verification",
+      "status": "failing"
+    },
+    {
+      "id": "ac-3",
+      "description": "skills/error-recovery.md exists with 6 error classes, max-2-retry rule, Capability Gap Report template, and Maestro escalation flow",
+      "status": "failing"
+    },
+    {
+      "id": "ac-4",
+      "description": "specs/README.md exists with the JSON schema, field reference, status values, risk level gate table, and rules",
+      "status": "failing"
+    },
+    {
+      "id": "ac-5",
+      "description": "personas/coder.md updated to reference skills/testing.md and skills/error-recovery.md in its Playbook",
+      "status": "failing"
+    },
+    {
+      "id": "ac-6",
+      "description": "personas/architect.md updated to produce a JSON spec in specs/ as part of plan output",
+      "status": "failing"
+    },
+    {
+      "id": "ac-7",
+      "description": "personas/maestro.md updated to pass spec path in task briefs and handle Capability Gap escalations",
+      "status": "failing"
+    },
+    {
+      "id": "ac-8",
+      "description": "personas/reviewer.md updated to cross-reference spec acceptance criteria against handoff Test Results",
+      "status": "failing"
+    },
+    {
+      "id": "ac-9",
+      "description": "skills/task-tracking.md updated to derive to-do items from specs/*.json acceptanceCriteria and sync status back to the spec",
+      "status": "failing"
+    },
+    {
+      "id": "ac-10",
+      "description": "CHANGELOG.md updated with version 0.3.0 entry documenting all Sprint 1 additions",
+      "status": "failing"
+    }
+  ],
+  "affectedFiles": [
+    "skills/testing.md",
+    "skills/error-recovery.md",
+    "rules/commandments/security.md",
+    "specs/README.md",
+    "specs/feat-sprint1-harness-ops.json",
+    "personas/coder.md",
+    "personas/architect.md",
+    "personas/maestro.md",
+    "personas/reviewer.md",
+    "skills/task-tracking.md",
+    "CHANGELOG.md"
+  ],
+  "notes": ""
+}

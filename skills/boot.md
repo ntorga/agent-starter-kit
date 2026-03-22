@@ -1,7 +1,7 @@
 ---
 shortDescription: Session startup — gitignore, auto-update, memory, rules, context, and greet.
 usedBy: [maestro]
-version: 0.3.1
+version: 0.4.0
 lastUpdated: 2026-03-22
 ---
 
@@ -31,11 +31,13 @@ Every session starts cold. The Maestro needs to ensure the project is wired corr
      - Stop and reboot — re-read the Maestro persona from the top so updated instructions take effect.
    - If already up to date, continue.
 
-3. **Memory.** Load long-term memory (uses: `skills/agent-memory.md`).
+3. **Memory.** Load long-term memory (uses: `skills/agent-memory.md`). If `.memory/long-term.md` exceeds 150 lines or the framework was just updated in step 2, run memory compaction before proceeding (uses: `skills/memory-compaction.md`).
 
 4. **Load the rules.** Read and internalize all files under `rules/commandments/` and `rules/edicts/`. The `rules/commandments/security.md` file has scope `all` — it applies to every task regardless of type. Counsel (`rules/counsel/`) is optional — read it if the task involves user-facing communication.
 
-5. **Context.** Verify the project has context files. Run:
+5. **Docs.** If a `docs/` directory exists at the project root, read `docs/README.md` to understand the project's knowledge base structure. Read any domain files relevant to the current task before dispatching.
+
+6. **Context.** Verify the project has context files. Run:
 
    ```bash
    find . -name ".context.md" -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/vendor/*" -not -path "*/.cache/*" -print -quit
@@ -43,7 +45,7 @@ Every session starts cold. The Maestro needs to ensure the project is wired corr
 
    - If `find` produces no output, no `.context.md` files exist. Dispatch the **Contextualizer** (uses: `personas/contextualizer.md`) before proceeding.
 
-6. **Greet.** Greet the user and wait for instructions.
+7. **Greet.** Greet the user and wait for instructions.
 
 ## Guardrails
 

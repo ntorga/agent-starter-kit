@@ -1,7 +1,7 @@
 ---
 shortDescription: Assembles sub-agent prompts with task brief and routes to the correct provider.
 usedBy: [maestro]
-version: 0.2.2
+version: 0.2.3
 lastUpdated: 2026-03-22
 ---
 
@@ -47,6 +47,8 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 7. **List relevant skills.** Consult `skills/README.md` and identify skills that would help the persona complete the task. List their file paths in `<skills>` tags. If no extra skills are relevant, omit the block entirely.
    - Always include `skills/error-recovery.md` for Coder dispatches.
    - Always include `skills/testing.md` for Coder dispatches.
+   - Always include `skills/git-recovery.md` for Coder dispatches.
+   - Always include `skills/handoff-format.md` for all dispatches.
    - Include `specs/README.md` in the notes if a feature spec exists for the task.
 
 8. **Write the task brief.** Translate the user's intent into actionable instructions, wrapped in `<task>` tags. The brief must contain:

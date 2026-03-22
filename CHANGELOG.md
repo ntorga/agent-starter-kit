@@ -1,6 +1,16 @@
 # Changelog
 
 ```log
+0.4.0 - 2026/03/22
+feat: add git-recovery skill — checkpoint strategy, clean state definition, bisect/revert/reset playbook, session handoff via WIP commits
+feat: add memory-compaction skill — prune resolved issues, remove superseded rules, resolve contradictions, promote stable lessons to rules/
+feat: add handoff-format skill — machine-readable frontmatter (persona, task, status, timestamp) with structured sections for all personas
+feat: add docs/ directory — tiered context layer for architecture, decisions, domains, and runbooks with mandatory "What Agents Must Know" section
+feat(boot): add docs/ tier to boot sequence; trigger memory compaction when .memory/long-term.md exceeds 150 lines or framework updates
+feat(coder): add git-recovery checkpoint step to Playbook; delegate handoff structure to handoff-format skill
+feat(dispatch): always include git-recovery and handoff-format for all Coder and persona dispatches
+refactor: remove evals, observability, and HITL from Sprint 2 scope — redundant for CLI-based usage (Claude Code + OpenCode)
+
 0.3.0 - 2026/03/22
 feat: add testing skill — three-tier protocol (unit, integration, E2E) with Playwright CLI as primary tool and MCP as optional investigation mode
 feat: add security commandment (scope: all) — input validation, least-privilege, secret protection, output sanitization, destructive action gates, dependency verification (OWASP Agentic Top 10)

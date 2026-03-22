@@ -1,0 +1,66 @@
+{
+  "id": "feat-sprint2-harness-ops",
+  "title": "Sprint 2 — Session Continuity and Context Architecture",
+  "status": "passing",
+  "priority": 2,
+  "phase": 1,
+  "totalPhases": 1,
+  "created": "2026-03-22",
+  "updated": "2026-03-22",
+  "riskLevel": "low",
+  "description": "Adds session continuity and tiered context architecture to the harness: git recovery with checkpoint strategy, memory compaction to prevent long-term memory degradation, structured machine-readable handoffs, and a docs/ directory as the second tier of project context. Evals, observability, and HITL were removed from scope — redundant for CLI-based usage with Claude Code and OpenCode.",
+  "acceptanceCriteria": [
+    {
+      "id": "ac-1",
+      "description": "skills/git-recovery.md exists with clean state definition, checkpoint procedure, bisect/revert/reset recovery steps, session handoff via WIP commits, and guardrails",
+      "status": "passing"
+    },
+    {
+      "id": "ac-2",
+      "description": "skills/memory-compaction.md exists with when-to-run triggers, 8-step compaction procedure, promotion path to rules/, and guardrails",
+      "status": "passing"
+    },
+    {
+      "id": "ac-3",
+      "description": "skills/handoff-format.md exists with frontmatter schema (persona, task, status, timestamp), all conditional sections, status definitions, and guardrails",
+      "status": "passing"
+    },
+    {
+      "id": "ac-4",
+      "description": "docs/README.md exists with directory structure, file conventions including mandatory 'What Agents Must Know' section, index table, and maintenance rules",
+      "status": "passing"
+    },
+    {
+      "id": "ac-5",
+      "description": "skills/boot.md updated with docs/ tier step and memory compaction trigger",
+      "status": "passing"
+    },
+    {
+      "id": "ac-6",
+      "description": "personas/coder.md updated with git-recovery checkpoint step and handoff-format delegation",
+      "status": "passing"
+    },
+    {
+      "id": "ac-7",
+      "description": "skills/dispatch.md updated to always include git-recovery and handoff-format for all dispatches",
+      "status": "passing"
+    },
+    {
+      "id": "ac-8",
+      "description": "CHANGELOG.md updated with version 0.4.0 entry",
+      "status": "passing"
+    }
+  ],
+  "affectedFiles": [
+    "skills/git-recovery.md",
+    "skills/memory-compaction.md",
+    "skills/handoff-format.md",
+    "docs/README.md",
+    "skills/boot.md",
+    "personas/coder.md",
+    "personas/maestro.md",
+    "skills/dispatch.md",
+    "CHANGELOG.md"
+  ],
+  "notes": "Scope reduced from original Sprint 2 plan. Evals, observability, and HITL skills removed — Reviewer persona + spec status already covers eval quality gate; Claude Code/OpenCode CLIs provide native observability; CLI usage means user is always in the loop."
+}

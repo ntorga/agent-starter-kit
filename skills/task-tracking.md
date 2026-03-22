@@ -1,8 +1,8 @@
 ---
 shortDescription: File-based to-do tracking for multi-step and multi-session work.
 usedBy: [coder]
-version: 0.1.0
-lastUpdated: 2026-03-04
+version: 0.2.0
+lastUpdated: 2026-03-22
 ---
 
 ## Purpose
@@ -13,9 +13,18 @@ Agents working on multi-step tasks need a way to track progress that survives se
 
 1. **Check for an existing to-do.** Before starting work, look for files in the `.memory/todo/` directory at the project root. If a to-do file for the current task already exists, read it and resume from the first unchecked item. Do not recreate.
 
-2. **Create a to-do from the plan or task brief.** If no existing to-do matches, create `.memory/todo/YYYY-MM-DD-<prefix>-<slug>.md` following the schema below. Derive items from the architect plan's phases and file lists, or from the task brief's acceptance criteria. Each item must be a concrete, verifiable action — not a vague category.
+2. **Create a to-do from the plan, task brief, or feature spec.** If no existing to-do matches, create `.memory/todo/YYYY-MM-DD-<prefix>-<slug>.md` following the schema below.
 
    **Naming convention:** The filename uses the pattern `YYYY-MM-DD-<prefix>-<slug>.md`, where `<prefix>` is the conventional-commit type and `<slug>` is a short kebab-case summary (follows: `rules/commandments/git.md`). Examples: `.memory/todo/2026-02-18-feat-user-auth.md`, `.memory/todo/2026-02-18-fix-login-redirect.md`.
+
+   **When a feature spec exists** (`specs/<id>.json`), derive to-do items directly from its `acceptanceCriteria` array. Each criterion becomes one checkbox item, referencing the spec and criterion ID:
+
+   ```markdown
+   - [ ] [feat-user-auth / ac-1] User can click 'Sign in with Google' and complete OAuth flow
+   - [ ] [feat-user-auth / ac-2] User can click 'Sign in with GitHub' and complete OAuth flow
+   ```
+
+   When marking an item `[x]`, also update the corresponding `acceptanceCriteria[].status` in the spec JSON from `"failing"` to `"passing"`. If no spec exists, derive items from the architect plan's phases and file lists or from the task brief's acceptance criteria.
 
 3. **Update as you go.** After completing each item, mark it `[x]` and add a log entry if the outcome was notable (unexpected decision, deviation from plan, blocker encountered). Do not batch updates — mark items done as they finish.
 

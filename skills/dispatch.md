@@ -1,8 +1,8 @@
 ---
 shortDescription: Assembles sub-agent prompts with task brief and routes to the correct provider.
 usedBy: [maestro]
-version: 0.2.1
-lastUpdated: 2026-03-09
+version: 0.2.2
+lastUpdated: 2026-03-22
 ---
 
 ## Purpose
@@ -45,6 +45,9 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 6. **List the commandments (scoped).** Consult `rules/README.md` and select only commandments whose scope matches the task category. List their file paths in `<commandments>` tags — do not inline the file contents. The persona has file access and will read them directly. If no commandments match, omit the block entirely. When the task involves code changes — even if the persona does not write code (e.g. architect planning implementations) — include `coding`-scoped rules so the persona's output aligns with the conventions the coder will follow.
 
 7. **List relevant skills.** Consult `skills/README.md` and identify skills that would help the persona complete the task. List their file paths in `<skills>` tags. If no extra skills are relevant, omit the block entirely.
+   - Always include `skills/error-recovery.md` for Coder dispatches.
+   - Always include `skills/testing.md` for Coder dispatches.
+   - Include `specs/README.md` in the notes if a feature spec exists for the task.
 
 8. **Write the task brief.** Translate the user's intent into actionable instructions, wrapped in `<task>` tags. The brief must contain:
    - **Intent** — what the user wants accomplished, in the Maestro's words.

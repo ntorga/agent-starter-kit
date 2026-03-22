@@ -1,8 +1,8 @@
 ---
 shortDescription: Session startup — gitignore, auto-update, memory, rules, context, and greet.
 usedBy: [maestro]
-version: 0.3.0
-lastUpdated: 2026-03-10
+version: 0.3.1
+lastUpdated: 2026-03-22
 ---
 
 ## Purpose
@@ -33,7 +33,7 @@ Every session starts cold. The Maestro needs to ensure the project is wired corr
 
 3. **Memory.** Load long-term memory (uses: `skills/agent-memory.md`).
 
-4. **Load the rules.** Read and internalize all files under `rules/commandments/` and `rules/edicts/`. Counsel (`rules/counsel/`) is optional — read it if the task involves user-facing communication.
+4. **Load the rules.** Read and internalize all files under `rules/commandments/` and `rules/edicts/`. The `rules/commandments/security.md` file has scope `all` — it applies to every task regardless of type. Counsel (`rules/counsel/`) is optional — read it if the task involves user-facing communication.
 
 5. **Context.** Verify the project has context files. Run:
 

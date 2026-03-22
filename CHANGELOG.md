@@ -1,6 +1,19 @@
 # Changelog
 
 ```log
+0.3.0 - 2026/03/22
+feat: add testing skill — three-tier protocol (unit, integration, E2E) with Playwright CLI as primary tool and MCP as optional investigation mode
+feat: add security commandment (scope: all) — input validation, least-privilege, secret protection, output sanitization, destructive action gates, dependency verification (OWASP Agentic Top 10)
+feat: add error-recovery skill — 6 error classes, max-2-retry rule, Capability Gap report template, Maestro escalation flow
+feat: add specs/ directory and README — JSON feature spec schema with per-criterion status tracking (failing → passing)
+feat(architect): produce JSON feature spec alongside plan document; set riskLevel for high-impact changes
+feat(coder): reference testing and error-recovery skills in Playbook; add Test Results section to handoff; update spec criterion status as tests pass
+feat(maestro): pass spec path in task briefs; handle Capability Gap escalations (fix/defer/cancel); surface [DESTRUCTIVE] actions for user approval
+feat(reviewer): cross-reference spec acceptanceCriteria against handoff Test Results; flag mismatches as blockers
+feat(task-tracking): derive to-do items from specs/*.json acceptanceCriteria; sync item completion back to spec status
+feat(boot): note security.md scope:all applies to every task
+feat(dispatch): always include testing and error-recovery skills for Coder dispatches
+
 0.2.3 - 2026/03/10
 feat(boot): add gitignore check — ensure .agents/ and .memory/ are in project .gitignore on startup
 feat(boot): add auto-update — pull latest framework on session start, reboot if changes detected

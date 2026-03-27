@@ -2,7 +2,7 @@
 shortDescription: Assembles sub-agent prompts with task brief and routes to the correct provider.
 usedBy: [maestro]
 version: 0.2.2
-lastUpdated: 2026-03-26
+lastUpdated: 2026-03-27
 ---
 
 ## Purpose
@@ -82,11 +82,11 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 Each row maps a provider to its `preferredModel` value, CLI tool, and concrete models per tier. Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest.
 
-| Provider    | `preferredModel` | CLI            | tier-1                               | tier-2                           | tier-3                           |
-| ----------- | ---------------- | -------------- | ------------------------------------ | -------------------------------- | -------------------------------- |
-| Claude Code | `claude`         | `claude`       | Haiku                                | Sonnet                           | Opus                             |
-| Codex CLI   | `codex`          | `codex`        | `gpt-5.4-mini`                       | `gpt-5.2`                        | `gpt-5.4`                        |
-| Cursor CLI  | `cursor`         | `cursor-agent` | `auto`                               | `auto`                           | `claude-4.6-opus-max-thinking`   |
+| Provider    | `preferredModel` | CLI            | tier-1                               | tier-2            | tier-3                         |
+| ----------- | ---------------- | -------------- | ------------------------------------ | ----------------- | ------------------------------ |
+| Claude Code | `claude`         | `claude`       | Haiku                                | Sonnet            | Opus                           |
+| Codex CLI   | `codex`          | `codex`        | `gpt-5.4-mini`                       | `gpt-5.3-codex`   | `gpt-5.4`                      |
+| Cursor CLI  | `cursor`         | `cursor-agent` | `auto`                               | `auto`            | `claude-4.6-opus-max-thinking` |
 | Qwen        | `qwen`           | `opencode`     | bailian-coding-plan/qwen3-coder-next | bailian-coding-plan/qwen3.5-plus | bailian-coding-plan/qwen3.5-plus |
 
 ## CLI Dispatch

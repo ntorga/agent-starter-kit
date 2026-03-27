@@ -1,8 +1,8 @@
 ---
 shortDescription: Assembles sub-agent prompts with task brief and routes to the correct provider.
 usedBy: [maestro]
-version: 0.2.2
-lastUpdated: 2026-03-26
+version: 0.2.3
+lastUpdated: 2026-03-27
 ---
 
 ## Purpose
@@ -21,7 +21,7 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 ## Procedure
 
-1. **Identify the host runtime.** Run `ps -p $PPID -o comm=` and match the output against the Providers table (e.g., `claude` → Claude Code). Store the result in session state — the host runtime does not change mid-conversation.
+1. **Identify the host runtime.** Run `ps -p $PPID -o comm=` and match the output against the Providers table (e.g., `claude` → Claude Code, `codex` → Codex CLI, `cursor-agent` → Cursor CLI). Store the result in session state — the host runtime does not change mid-conversation.
 
 2. **Extract routing fields.**
 
@@ -32,9 +32,9 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 3. **Select the provider and model.** Resolve `preferredModel` and `modelTier` against the Providers table. If `preferredModel` is omitted, use the host runtime's provider. The persona's `modelTier` is a floor — upgrade one tier when the task demands multi-step reasoning across system boundaries (e.g., cross-layer architectural changes, security/auth logic, or production deployment pipelines).
 
 4. **Decide how to dispatch.** Look up the persona's `preferredModel` in the Providers table to find its CLI column. Then:
-   - **Native dispatch** — the provider's CLI matches the host runtime. Use the host's built-in subagent mechanism (e.g., Task tool for Claude Code). Do not shell out to the same tool's CLI.
-   - **CLI dispatch** — the provider's CLI does not match the host runtime. Shell out to the provider's CLI tool (see CLI Dispatch section).
-   - If the preferred provider's CLI is not installed or unreachable, fall back to native dispatch and record the deviation in session memory.
+   - **Native dispatch** — if the current host runtime can satisfy the target provider through its native subagent mechanism, use that path instead of shelling out. Examples: Claude Code Task tool, Codex subagent environment, Cursor's native agent/subagent flow.
+   - **CLI dispatch** — if the current host runtime cannot satisfy the target provider natively, shell out to the provider's external CLI tool (see CLI Dispatch section).
+   - If the preferred provider's external CLI is not installed or reachable, but the host can still satisfy the request natively, fall back to native dispatch and record the deviation in session memory.
 
 5. **Strip the frontmatter.** Wrap the result in `<agent>` tags verbatim — do not summarize, paraphrase, or shorten the persona file. The full text must arrive exactly as written. Each dispatch targets exactly one agent — never multiple personas in a single prompt.
 
@@ -82,14 +82,16 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 Each row maps a provider to its `preferredModel` value, CLI tool, and concrete models per tier. Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest.
 
-| Provider    | `preferredModel` | CLI        | tier-1                               | tier-2                           | tier-3                           |
-| ----------- | ---------------- | ---------- | ------------------------------------ | -------------------------------- | -------------------------------- |
-| Claude Code | `claude`         | `claude`   | Haiku                                | Sonnet                           | Opus                             |
-| Qwen        | `qwen`           | `opencode` | bailian-coding-plan/qwen3-coder-next | bailian-coding-plan/qwen3.5-plus | bailian-coding-plan/qwen3.5-plus |
+| Provider    | `preferredModel` | CLI            | tier-1                               | tier-2            | tier-3                         |
+| ----------- | ---------------- | -------------- | ------------------------------------ | ----------------- | ------------------------------ |
+| Claude Code | `claude`         | `claude`       | Haiku                                | Sonnet            | Opus                           |
+| Codex CLI   | `codex`          | `codex`        | `gpt-5.4-mini`                       | `gpt-5.3-codex`   | `gpt-5.4`                      |
+| Cursor CLI  | `cursor`         | `cursor-agent` | `auto`                               | `auto`            | `claude-4.6-opus-max-thinking` |
+| Qwen        | `qwen`           | `opencode`     | bailian-coding-plan/qwen3-coder-next | bailian-coding-plan/qwen3.5-plus | bailian-coding-plan/qwen3.5-plus |
 
 ## CLI Dispatch
 
-When the host runtime differs from the target provider, pipe the assembled prompt through `stdin`:
+When the host runtime differs from the target provider, dispatch using the provider's accepted input mode. Prefer `stdin` when the CLI supports it; otherwise pass the assembled prompt as a single non-interactive argument.
 
 ```bash
 cat << 'EOF' | [cli-tool] [flags]
@@ -100,6 +102,8 @@ EOF
 Provider-specific flags (add entries as you integrate providers):
 
 - **`claude`**: `--model [model]` (accepts `haiku`, `sonnet`, `opus`). Do **not** use `--print` (`-p`) — it bypasses permission checks.
+- **`codex`**: `exec - --model [model] --sandbox workspace-write --skip-git-repo-check -C [workspace]`. Use `exec -` to read from `stdin` and keep dispatch non-interactive/reproducible. Add `--full-auto` only when safety boundaries are already enforced by the environment.
+- **`cursor-agent`**: `--model [model] "[assembled prompt]"` in headless/non-interactive mode. Add `--workspace [workspace]` only when explicitly provided. Add `--trust` only under externally enforced safety controls.
 - **`opencode`**: `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS=600000 opencode run --model [provider/model]`. The env var raises the bash timeout from 120s to 600s. Optional: `--thinking` (shows thinking blocks).
 
 ## Guardrails

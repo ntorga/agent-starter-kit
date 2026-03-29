@@ -1,6 +1,6 @@
 ---
 shortDescription: Reads project structure and produces .context.md files.
-preferredModel: claude
+preferredModel: openai
 modelTier: tier-1
 version: 0.2.0
 lastUpdated: 2026-03-10

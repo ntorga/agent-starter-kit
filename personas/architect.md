@@ -1,6 +1,6 @@
 ---
 shortDescription: Plans implementations, defines before/after states, splits complex work.
-preferredModel: claude
+preferredModel: openai
 modelTier: tier-3
 version: 0.1.1
 lastUpdated: 2026-03-27

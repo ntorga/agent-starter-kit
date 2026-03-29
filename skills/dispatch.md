@@ -21,7 +21,7 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 ## Procedure
 
-1. **Identify the host runtime.** Run `ps -p $PPID -o comm=` and match the output against the Providers table (e.g., `claude` → Claude Code). Store the result in session state — the host runtime does not change mid-conversation.
+1. **Identify the host runtime.** Run `ps -p $PPID -o comm=` and match the output against the Providers table (e.g., `claude` → Claude Code, `codex` → OpenAI). Store the result in session state — the host runtime does not change mid-conversation.
 
 2. **Extract routing fields.**
 
@@ -32,7 +32,7 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 3. **Select the provider and model.** Resolve `preferredModel` and `modelTier` against the Providers table. If `preferredModel` is omitted, use the host runtime's provider. The persona's `modelTier` is a floor — upgrade one tier when the task demands multi-step reasoning across system boundaries (e.g., cross-layer architectural changes, security/auth logic, or production deployment pipelines).
 
 4. **Decide how to dispatch.** Look up the persona's `preferredModel` in the Providers table to find its CLI column. Then:
-   - **Native dispatch** — the provider's CLI matches the host runtime. Use the host's built-in subagent mechanism (e.g., Task tool for Claude Code). Do not shell out to the same tool's CLI.
+   - **Native dispatch** — the provider's CLI matches the host runtime. Use the host's built-in subagent mechanism (e.g., Task tool for Claude Code, subagents for Codex CLI). Do not shell out to the same tool's CLI.
    - **CLI dispatch** — the provider's CLI does not match the host runtime. Shell out to the provider's CLI tool (see CLI Dispatch section).
    - If the preferred provider's CLI is not installed or unreachable, fall back to native dispatch and record the deviation in session memory.
 
@@ -85,6 +85,7 @@ Each row maps a provider to its `preferredModel` value, CLI tool, and concrete m
 | Provider    | `preferredModel` | CLI        | tier-1                               | tier-2                           | tier-3                           |
 | ----------- | ---------------- | ---------- | ------------------------------------ | -------------------------------- | -------------------------------- |
 | Claude Code | `claude`         | `claude`   | Haiku                                | Sonnet                           | Opus                             |
+| OpenAI      | `openai`         | `codex`    | gpt-5.4-mini                         | gpt-5.4                          | gpt-5.3-codex                    |
 | Qwen        | `qwen`           | `opencode` | bailian-coding-plan/qwen3-coder-next | bailian-coding-plan/qwen3.5-plus | bailian-coding-plan/qwen3.5-plus |
 
 ## CLI Dispatch
@@ -100,6 +101,7 @@ EOF
 Provider-specific flags (add entries as you integrate providers):
 
 - **`claude`**: `--model [model]` (accepts `haiku`, `sonnet`, `opus`). Do **not** use `--print` (`-p`) — it bypasses permission checks.
+- **`codex`**: `codex exec --model [model] --full-auto -` (reads prompt from `stdin` via `-`). The `--full-auto` flag grants workspace-write sandbox and on-request approvals. Optional: `--sandbox read-only` for review-only tasks.
 - **`opencode`**: `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS=600000 opencode run --model [provider/model]`. The env var raises the bash timeout from 120s to 600s. Optional: `--thinking` (shows thinking blocks).
 
 ## Guardrails

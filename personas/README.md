@@ -31,7 +31,7 @@ Lowercase, short name: `reviewer.md`, `architect.md`
 | Field              | Required | Example                                 |
 | ------------------ | -------- | --------------------------------------- |
 | `shortDescription` | Yes      | `Reviews code for quality and security` |
-| `preferredModel`   | No       | `claude` or `[claude, gemini]`          |
+| `preferredModel`   | No       | `openai` or `[openai, claude]`          |
 | `modelTier`        | Yes      | `tier-2`                                |
 | `version`          | Yes      | `0.1.0`                                 |
 | `lastUpdated`      | Yes      | `2026-02-04`                            |

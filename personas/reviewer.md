@@ -1,6 +1,6 @@
 ---
 shortDescription: Unified reviewer covering coherence, quality, and security in a single pass.
-preferredModel: claude
+preferredModel: openai
 modelTier: tier-2
 version: 0.2.0
 lastUpdated: 2026-03-26

@@ -82,12 +82,13 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 Each row maps a provider to its `preferredModel` value, CLI tool, and concrete models per tier. Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest.
 
-| Provider    | `preferredModel` | CLI            | tier-1                               | tier-2            | tier-3                         |
-| ----------- | ---------------- | -------------- | ------------------------------------ | ----------------- | ------------------------------ |
-| Claude Code | `claude`         | `claude`       | Haiku                                | Sonnet            | Opus                           |
-| Codex CLI   | `codex`          | `codex`        | `gpt-5.4-mini`                       | `gpt-5.3-codex`   | `gpt-5.4`                      |
-| Cursor CLI  | `cursor`         | `cursor-agent` | `auto`                               | `auto`            | `auto`                         |
+| Provider    | `preferredModel` | CLI            | tier-1                               | tier-2                           | tier-3                           |
+|-------------|------------------|----------------|--------------------------------------|----------------------------------|----------------------------------|
+| Claude Code | `claude`         | `claude`       | Haiku                                | Sonnet                           | Opus                             |
+| Codex CLI   | `codex`          | `codex`        | `gpt-5.4-mini`                       | `gpt-5.3-codex`                  | `gpt-5.4`                        |
+| Cursor CLI  | `cursor`         | `cursor-agent` | `auto`                               | `auto`                           | `auto`                           |
 | Qwen        | `qwen`           | `opencode`     | bailian-coding-plan/qwen3-coder-next | bailian-coding-plan/qwen3.5-plus | bailian-coding-plan/qwen3.5-plus |
+| Gemini      | `gemini`         | `gemini`       | gemini-2.5-flash                     | gemini-2.5-pro                   | gemini-3.1-pro-preview           |
 
 ## CLI Dispatch
 
@@ -105,6 +106,7 @@ Provider-specific flags (add entries as you integrate providers):
 - **`codex`**: `exec - --model [model] --sandbox workspace-write --skip-git-repo-check -C [workspace]`. Add `--full-auto` only when safety boundaries are already enforced by the environment.
 - **`cursor-agent`**: `--model [model]`. Add `--workspace [workspace]` only when explicitly provided. Add `--trust` only under externally enforced safety controls.
 - **`opencode`**: `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS=600000 opencode run --model [provider/model]`. The env var raises the bash timeout from 120s to 600s. Optional: `--thinking` (shows thinking blocks).
+- **`gemini`**: `gemini --model [model] --prompt [prompt]`
 
 ## Guardrails
 

@@ -1,6 +1,9 @@
 # Changelog
 
 ```log
+0.4.4 - 2026/04/06
+feat(dispatch): add Gemini as provider to routing matrix
+
 0.4.3 - 2026/04/03
 feat(maestro): add plan review gate — dedicated step between Parse and Dispatch ensures plans pass review before implementation
 

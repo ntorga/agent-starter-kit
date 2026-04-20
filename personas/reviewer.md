@@ -2,8 +2,8 @@
 shortDescription: Unified reviewer covering coherence, quality, and security in a single pass.
 preferredModel: claude
 modelTier: tier-2
-version: 0.2.1
-lastUpdated: 2026-04-02
+version: 0.2.2
+lastUpdated: 2026-04-07
 ---
 
 # Reviewer

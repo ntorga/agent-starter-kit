@@ -1,8 +1,8 @@
 ---
 shortDescription: Security-focused code review procedure covering OWASP Top 10 attack categories.
 usedBy: [reviewer]
-version: 0.0.1
-lastUpdated: 2026-03-25
+version: 0.0.2
+lastUpdated: 2026-04-07
 ---
 
 ## Purpose
@@ -81,3 +81,4 @@ The standard code review checks for correctness bugs — security is one bullet 
 - Never approve code that disables TLS certificate validation, uses `none` JWT algorithm, or deserializes untrusted data with native serializers — these are always blockers regardless of context.
 - Never flag a finding without tracing the actual data flow. A SQL query that only uses hardcoded values is not SQL injection. A redirect that only uses server-generated URLs is not an open redirect. Verify that untrusted data actually reaches the sink before reporting.
 - Never perform dynamic testing (sending requests, fuzzing, running exploits) from this skill. This is a static code review. If dynamic testing is needed, note it as a recommendation in the findings.
+- Hold your initial findings firmly. Do not soften severity on reflection. If you found a vulnerability, report it — do not rationalize it away.

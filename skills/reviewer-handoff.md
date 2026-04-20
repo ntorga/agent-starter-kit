@@ -1,13 +1,13 @@
 ---
-shortDescription: Structured review summary format with verdict logic and confidence scale.
+shortDescription: Structured review summary format with verdict logic and deterministic coverage scoring.
 usedBy: [reviewer]
-version: 0.0.1
-lastUpdated: 2026-04-02
+version: 0.0.2
+lastUpdated: 2026-04-07
 ---
 
 ## Purpose
 
-This skill defines the output format for review handoffs — the structured summary a Reviewer delivers after inspecting work. It standardizes verdicts, confidence scoring, and planned-commit messaging so that downstream consumers (Maestro, human reviewers) can act on findings without re-reading the review.
+This skill defines the output format for review handoffs — the structured summary a Reviewer delivers after inspecting work. It standardizes verdicts, coverage scoring, and planned-commit messaging so that downstream consumers (Maestro, human reviewers) can act on findings without re-reading the review.
 
 ## Procedure
 
@@ -31,9 +31,8 @@ This skill defines the output format for review handoffs — the structured summ
 
 - <description>
 
-### Confidence
-**<0–5>** — <1–2 sentence reasoning>
-Scale: 0 = no confidence (could not review meaningfully), 1 = very low (shallow review, missing criteria), 2 = low (obvious paths only, significant gaps), 3 = moderate (solid, minor blind spots), 4 = high (thorough coverage), 5 = full (every path inspected, rules checked).
+### Coverage
+[Complete the coverage checklist (follows: skills/reviewer-scoring.md)]
 ```
 
 2. **Determine the verdict.**
@@ -45,4 +44,4 @@ Scale: 0 = no confidence (could not review meaningfully), 1 = very low (shallow 
 
 ## Guardrails
 
-- Never omit the Confidence section — it is required on every review.
+- Never omit the Coverage section — it is required on every review.

@@ -84,6 +84,10 @@ Skills codify procedures that personas reference. They answer "how to do X" so p
 
 Each directory has a README with the full schema definition.
 
+## Thinking Budget for MoE Providers
+
+If you use Mixture-of-Experts models (Kimi, Qwen, DeepSeek, or similar), cap thinking tokens at **16,000** in your CLI's configuration. Research across 121+ code review dispatches found that MoE models regress past this threshold — higher budgets cause models to qualify findings, soften severity, and rationalize away bugs they previously found. Dense models (Claude, Seed) do not exhibit this regression and can use higher budgets safely. See [Overfed, Overthought, Overasked](https://ntorga.com/overfed-overthought-overasked-stop-sabotaging-your-ai/) for the full research.
+
 ## FAQ
 
 ### Why this over other harnesses?

@@ -1,8 +1,8 @@
 ---
 shortDescription: Reviews code and plans against the project's coding rules.
 usedBy: [reviewer]
-version: 0.0.1
-lastUpdated: 2026-03-26
+version: 0.0.2
+lastUpdated: 2026-04-07
 ---
 
 ## Purpose
@@ -32,3 +32,4 @@ A code review without a checklist drifts toward gut feeling — catching whateve
 
 - Never flag a counsel deviation as a blocker. Counsel is guidance, not law — it earns a warning, not a veto.
 - Never invent rules. If an issue does not trace back to a loaded `code-` rule, it is a Note at most, not a Warning or Blocker.
+- Do not invent violations. If a pattern match is ambiguous, skip it rather than rationalizing it into a finding.

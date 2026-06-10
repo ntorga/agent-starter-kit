@@ -16,7 +16,7 @@ This document outlines the consolidation of style guides, engineering practices,
 | **Phase 6** | Boot & Configuration (Language Detection) | **Done** |
 | **Phase 7** | Context Maintenance Alignment | **Done** |
 | **Phase 8** | Adversarial Plan Review Alignment | **Done** |
-| **Phase 9** | CL Author Guidelines (Small CLs) | **Pending** |
+| **Phase 9** | CL Author Guidelines (Small CLs) | **Done** |
 | **Phase 10** | API Design Standards | **Pending** |
 | **Phase 11** | Software Testing Principles (Testing on the Toilet) | **Pending** |
 | **Phase 12** | Resiliency and Production Standards (SRE) | **Pending** |
@@ -58,16 +58,13 @@ This document outlines the consolidation of style guides, engineering practices,
 ### Phase 8 — Adversarial Plan Review
 - Updated `skills/reviewer-architect-adversarial.md` to verify plans against language-specific style guides.
 
+### Phase 9 — CL Author Guidelines
+- Updated `personas/coder.md` playbook with "Small CLs" principles.
+- Updated `skills/coder-self-review.md` to enforce technical reasoning and impact.
+
 ---
 
 ## Future Implementation Plan
-
-### Phase 9 — CL Author Guidelines
-*   **Goal**: Guide the Coder on creating small, easy-to-review changes.
-*   **Actions**:
-    *   Update `personas/coder.md` playbook with "Small CLs" principles.
-    *   Update `skills/coder-self-review.md` to enforce technical reasoning in commit messages.
-*   **Reference**: [Google CL Author's Guide](https://google.github.io/eng-practices/review/developer/).
 
 ### Phase 10 — API Design Standards
 *   **Goal**: Standardize REST APIs and data structures.

@@ -29,11 +29,11 @@ Before delivering a handoff, the Coder evaluates its own output against the GRAS
 
 ### G — GUIDELINES
 
-_Did I follow the playbook end-to-end with no scope creep?_
+_Did I follow the playbook end-to-end with no scope creep and clear technical reasoning?_
 
 - **0** — Skipped todo creation or management. Did not review context files before touching code. Tests do not pass or were not run. Handoff format is wrong, missing sections, or absent. Scope expanded beyond the plan/brief.
-- **1** — Todo managed and context reviewed, but one or more procedural gaps: did not load relevant skills before implementing, did not consult the Google Style Guide for the language, did not update `.context.md` when file changes warranted it, or handoff has minor omissions (missing Decisions section when deviations occurred, or Incomplete section not populated for unfinished items).
-- **2** — All playbook steps followed: existing todo checked (or new one created), plan type determined, context files reviewed, neighboring files read for style, **Google Style Guide for the language consulted and followed**, relevant skills loaded, test-first approach used (tests failed before implementation), all tests pass, `.context.md` updated where changes warranted, acceptance criteria verified, handoff delivered in exact format with all sections populated. Yield conditions evaluated honestly — yielded when warranted, continued when appropriate.
+- **1** — Todo managed and context reviewed, but one or more procedural gaps: did not load relevant skills before implementing, did not consult the Google Style Guide for the language, did not update `.context.md` when file changes warranted it, or handoff has minor omissions (missing Decisions section when deviations occurred, or Incomplete section not populated for unfinished items). Technical reasoning in handoff or commit message is vague.
+- **2** — All playbook steps followed: existing todo checked (or new one created), plan type determined, context files reviewed, neighboring files read for style, **Google Style Guide for the language consulted and followed**, relevant skills loaded, test-first approach used (tests failed before implementation), all tests pass, `.context.md` updated where changes warranted, acceptance criteria verified, handoff delivered in exact format with all sections populated. **Handoff and commit message clearly explain technical reasoning and impact.** Yield conditions evaluated honestly — yielded when warranted, continued when appropriate.
 
 ### R — REASONING
 

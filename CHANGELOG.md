@@ -1,6 +1,10 @@
 # Changelog
 
 ```log
+1.0.1 - 2026/10/13
+fix(skills): boot step 1 skips gitignore entries for paths the project already tracks — a subtree-vendored .agents/ was being ignored, hiding every framework file added afterwards
+fix(skills): boot step 2 skips git -C .agents pull when .agents/ has no .git of its own — that command pulled the host repo and failed on divergence; the host project's update script owns the sync
+
 1.0.0 - 2026/09/12
 feat(personas): add name frontmatter and rename shortDescription to description — schema 0.3.0
 fix(configure-cli): read persona description field — readPersonaDescription replaces readPersonaShortDescription

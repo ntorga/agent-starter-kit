@@ -2,8 +2,8 @@
 name: boot
 description: Session startup — gitignore, auto-update, memory, rules, context, CLI config, and greet.
 usedBy: [maestro]
-version: 0.5.0
-lastUpdated: 2026-09-12
+version: 0.5.1
+lastUpdated: 2026-10-13
 ---
 
 ## Purpose
@@ -16,20 +16,31 @@ All framework files live under `.agents/`. Markdown references within the framew
 
 ## Procedure
 
-1. **Gitignore.** Ensure `.agents/`, `.memory/`, and `opencode.json` are in the project's `.gitignore`. Run:
+1. **Gitignore.** Ensure `.agents/`, `.memory/`, and `opencode.json` are in the project's `.gitignore` — except where the project already tracks them on purpose. Run:
 
    ```bash
    touch .gitignore
    for entry in '.agents/' '.memory/' 'opencode.json' '.ignore'; do
+       [ -n "$(git ls-files "$entry" | head -1)" ] && continue
        grep -qxF "$entry" .gitignore || echo "$entry" >> .gitignore
    done
    ```
 
-2. **Framework pull.** Run:
+   The `git ls-files` guard exists because some projects vendor the framework as a git
+   subtree, so `.agents/` is tracked deliberately. Ignoring an already-tracked path does not
+   untrack what is there, so nothing breaks the day the line is added — but every file added
+   to the framework afterwards becomes invisible to git, and the subtree starts losing content
+   silently. Skipping an entry that already has tracked files is always correct: a path the
+   project tracks is a path the project decided to track.
+
+2. **Framework pull.** Check how `.agents/` is vendored:
 
    ```bash
-   git -C .agents pull
+   [ -e .agents/.git ] && echo clone || echo vendored
    ```
+
+   - **`clone`** — `.agents/` is its own repository. Run `git -C .agents pull`.
+   - **`vendored`** — `.agents/` is a git subtree, or plain files, committed into the host project. Do not run `git -C .agents pull`. With no `.git` of its own, git resolves `.agents` to the host repository, so the command pulls the host project instead of the framework, and fails whenever the host branch has diverged from its remote. The host project owns the framework sync, for example a `git subtree pull --prefix=.agents <framework-remote> main --squash` in its own update script. If the project documents such a script and it has not run this session, run it. Otherwise tell the user the framework was not updated, and continue.
 
    - If the pull brought changes:
      - Read the `CHANGELOG.md` in `.agents` to understand what changed.
